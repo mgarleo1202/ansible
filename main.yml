@@ -1,0 +1,30 @@
+---
+- name: Instalar Apache, MariaDB y PHP
+  hosts: 138.199.147.210
+  become: yes
+  tasks:
+    - name: Actualizar los paquetes del sistema
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Instalar Apache2
+      apt:
+        name: apache2
+        state: present
+
+    - name: Instalar MariaDB
+      apt:
+        name: 
+          - mariadb-server
+          - mariadb-client
+        state: present
+
+    - name: Instalar PHP y extensiones necesarias
+      apt:
+        name:
+          - php
+          - php-mysql
+          - libapache2-mod-php
+          - php-cli
+        state: present
